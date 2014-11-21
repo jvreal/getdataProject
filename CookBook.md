@@ -30,7 +30,9 @@ and then the test and training data sets were bound to create single data set of
 
 Step 2 - Extract only the measurements on the mean and standard deviation for each measurement
 
-Of the initial 561 variable measuments on variables with mean() and std() were retained, to provide 66 variable
+Of the initial 561 variable measuments on variables with mean() and std() for only triaxial measurements 
+were retained.  So I decide as part of the exercise to tidy the data for this analysis to subset to those 
+variables with mean()-X, mean()-Y, mean()-Z and std()-X, std()-Y, std()-Z to provide 48 
 measurements per observation
 
 Step 3 - Uses descriptive activity names to name the activities in the data set

@@ -50,8 +50,11 @@ runanalysis <- function() {
 
   ##merged_data$subject <- c("Subject ", as.character(merged_data$subject))
     
-  subsetted_data <- merged_data[,(grepl("mean\\(\\)", names(merged_data)) | grepl("std\\(\\)", names(merged_data)) | grepl("^subject", names(merged_data)) | grepl("^activity", names(merged_data)))]
-  names(subsetted_data) <- tolower(gsub("[-()]","", names(subsetted_data)))
+  subsetted_data <- merged_data[,(grepl("mean\\(\\)-[XYZ]", names(merged_data)) | grepl("std\\(\\)-[XYZ]", names(merged_data)) | grepl("^subject", names(merged_data)) | grepl("^activity", names(merged_data)))]
+  names(subsetted_data) <- gsub("[()]","", names(subsetted_data))
+  ##names(subsetted_data) <- tolower(gsub("[-()]","", names(subsetted_data)))
   print(head(subsetted_data[,1]))
   str(subsetted_data)
+  write.table(subsetted_data, "./tidydata.txt", row.names=FALSE)
+  
 }
