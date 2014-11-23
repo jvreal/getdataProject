@@ -49,6 +49,8 @@ attempt to provide more meaningful description and to follow a variable name con
 Step 5 - From the data set in step 4, creates a second, independent tidy data set 
 with the average of each variable for each activity and each subject
 
-Here the data is shaped to provide a tidy set with only the average of each available for each activity
+Here the data is aggregated and shaped to provide a tidy set with only the average of each available for each activity
 and subject.
 
+aggregate function was used to mean all variables.  melt function for reshape library was then used to reshape
+data to narrow data set.
