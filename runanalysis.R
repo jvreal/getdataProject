@@ -1,5 +1,6 @@
 ## Run Analysis
 runanalysis <- function() {
+  
   ## Read in test and train data
   file_x_test <- "./data/test/X_test.txt"
   file_y_test <- "./data/test/y_test.txt"
@@ -58,10 +59,12 @@ runanalysis <- function() {
   
   ## aggregate data
   aggregate_data <-aggregate(subsetted_data[,!names(subsetted_data) %in% c("subject", "activity")], by=list(subject=subsetted_data$subject,activity=subsetted_data$activity), FUN=mean)
-  str(aggregate_data)
+  
   ## reshape data
-  
-  
-  write.table(aggregate_data, "./tidydata.txt", row.names=FALSE)
+  melted_data <- melt(aggregate_data, id.vars=c(1,2))
+  ##str(melted_data)
+    
+  write.table(melted_data, "./tidydata.txt", row.names=FALSE)
+  ##print(head(melted_data))
   
 }
