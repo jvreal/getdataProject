@@ -49,12 +49,19 @@ runanalysis <- function() {
   merged_data$activity[merged_data$activity==6] <- "laying" 
 
   ##merged_data$subject <- c("Subject ", as.character(merged_data$subject))
-    
+  
   subsetted_data <- merged_data[,(grepl("mean\\(\\)-[XYZ]", names(merged_data)) | grepl("std\\(\\)-[XYZ]", names(merged_data)) | grepl("^subject", names(merged_data)) | grepl("^activity", names(merged_data)))]
   names(subsetted_data) <- gsub("[()]","", names(subsetted_data))
   ##names(subsetted_data) <- tolower(gsub("[-()]","", names(subsetted_data)))
-  print(head(subsetted_data[,1]))
-  str(subsetted_data)
-  write.table(subsetted_data, "./tidydata.txt", row.names=FALSE)
+  
+  ## subsetted_data[subsetted_data$subject == 1 & subsetted_data$activity == "standing",]
+  
+  ## aggregate data
+  aggregate_data <-aggregate(subsetted_data[,!names(subsetted_data) %in% c("subject", "activity")], by=list(subject=subsetted_data$subject,activity=subsetted_data$activity), FUN=mean)
+  str(aggregate_data)
+  ## reshape data
+  
+  
+  write.table(aggregate_data, "./tidydata.txt", row.names=FALSE)
   
 }
